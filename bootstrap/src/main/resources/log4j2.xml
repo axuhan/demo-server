@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="COMMON-DEFAULT"
+                     fileName="logs/common/default.log"
+                     filePattern="logs/common/default-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <!-- 按时间滚动 -->
+                <TimeBasedTriggeringPolicy />
+                <!-- 按文件大小滚动 -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!-- 最多保留 max 个文件 -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <RollingFile name="COMMON-WARN"
+                     fileName="logs/common/warn.log"
+                     filePattern="logs/common/warn-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <!-- 按时间滚动 -->
+                <TimeBasedTriggeringPolicy />
+                <!-- 按文件大小滚动 -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!-- 最多保留 max 个文件 -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <RollingFile name="COMMON-ERROR"
+                     fileName="logs/common/error.log"
+                     filePattern="logs/common/error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <!-- 按时间滚动 -->
+                <TimeBasedTriggeringPolicy />
+                <!-- 按文件大小滚动 -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!-- 最多保留 max 个文件 -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <RollingFile name="APP-DEFAULT"
+                     fileName="logs/agentdemo/default.log"
+                     filePattern="logs/agentdemo/default-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <!-- 按时间滚动 -->
+                <TimeBasedTriggeringPolicy />
+                <!-- 按文件大小滚动 -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!-- 最多保留 max 个文件 -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <RollingFile name="SPRING-DEFAULT"
+                     fileName="logs/spring/default.log"
+                     filePattern="logs/spring/default-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <!-- 按时间滚动 -->
+                <TimeBasedTriggeringPolicy />
+                <!-- 按文件大小滚动 -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!-- 最多保留 max 个文件 -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 项目包日志级别 -->
+        <Logger name="com.xh" level="INFO" additivity="false">
+            <AppenderRef ref="APP-DEFAULT"/>
+        </Logger>
+
+        <!-- Spring 框架日志 -->
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="SPRING-DEFAULT"/>
+        </Logger>
+
+        <!-- 根日志 -->
+        <Root level="INFO">
+            <AppenderRef ref="COMMON-DEFAULT"/>
+            <AppenderRef ref="COMMON-WARN"/>
+            <AppenderRef ref="COMMON-ERROR"/>
+        </Root>
+    </Loggers>
+</Configuration>

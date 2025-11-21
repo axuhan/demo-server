@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://mybatis.org/schema/mybatis-spring
+       http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <bean id="postgresqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="${postgresql.url}"/>
+        <property name="username" value="prod_user"/>
+        <property name="password" value="prod_user"/>
+    </bean>
+
+    <bean id="postgresqlDataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="postgresqlDataSource"/>
+    </bean>
+
+    <bean id="postgresqlTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="postgresqlDataSourceTransactionManager"/>
+    </bean>
+
+    <bean id="postgresqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="postgresqlDataSource" />
+        <property name="mapperLocations" value="classpath:mapper/postgres/*.xml"/>
+        <property name="typeAliasesPackage" value="com.xh.dal.postgres.model"/>
+    </bean>
+
+    <bean id="postgresqlMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.xh.dal.postgres.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="postgresqlSqlSessionFactory"/>
+        <property name="annotationClass" value="org.apache.ibatis.annotations.Mapper"/>
+    </bean>
+</beans>
