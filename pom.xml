@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.6.13</spring-boot.version>
         <org.projectlombok.lombok.version>1.18.30</org.projectlombok.lombok.version>
-        <org.mapstruct.version>1.5.5.FINAL</org.mapstruct.version>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
     </properties>
 
     <modules>
