@@ -6,6 +6,8 @@
     <artifactId>dal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>dal</name>
+    <packaging>jar</packaging>
+
     <parent>
         <groupId>com.xh</groupId>
         <artifactId>agent-demo</artifactId>

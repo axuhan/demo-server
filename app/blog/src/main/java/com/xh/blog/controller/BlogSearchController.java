@@ -43,7 +43,7 @@ public class BlogSearchController {
     interface BlogVOMapper {
         BlogVOMapper INSTANCE = Mappers.getMapper(BlogVOMapper.class);
 
-        Blog map(Blog blog);
+        BlogVO map(Blog blog);
 
         List<BlogVO> map(List<Blog> blogs);
     }
