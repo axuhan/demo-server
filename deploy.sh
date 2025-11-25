@@ -23,7 +23,7 @@ stop_java_jars() {
     done
 
     # 等待进程退出
-    sleep 5
+    sleep 10
 
     # 检查是否还有进程运行，如果有则强制杀死
     remaining_pids=$(ps -ef | grep 'java -jar' | grep -v grep | awk '{print $2}')
