@@ -1,11 +1,10 @@
 package com.xh.agentdemo.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
+//@Configuration 使用nginx跨域配置代替此处配置
 public class CorsConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
