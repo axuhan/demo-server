@@ -77,8 +77,9 @@ def static getServerBatches() {
 def deployBatchServers_v2(servers) {
     for(server in servers) {
         sh """
-            scp -i /var/jenkins_home/ssh_key/id_rsa -o StrictHostKeyChecking=no deploy.sh bootstrap/target/bootstrap-0.0.1-SNAPSHOT.jar root@${server}:/root/deployments
+            scp -i /var/jenkins_home/ssh_key/id_rsa -o StrictHostKeyChecking=no deploy.sh health_check.sh bootstrap/target/bootstrap-0.0.1-SNAPSHOT.jar root@${server}:/root/deployments
             ssh -i /var/jenkins_home/ssh_key/id_rsa root@${server} 'bash /root/deployments/deploy.sh'
+            ssh -i /var/jenkins_home/ssh_key/id_rsa root@${server} 'bash /root/deployments/health_check.sh'
         """
     }
 }

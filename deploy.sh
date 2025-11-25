@@ -39,7 +39,7 @@ stop_java_jars() {
 }
 
 move_and_start_new_jar() {
-    mkdir /opt/app
+    mkdir -p /opt/app
     mv ./deployments/bootstrap-0.0.1-SNAPSHOT.jar /opt/app/bootstrap-0.0.1-SNAPSHOT.jar
     cd /opt/app
     nohup java -jar bootstrap-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --server.port=8082 > output.log 2>&1 &
@@ -48,3 +48,4 @@ move_and_start_new_jar() {
 # 执行函数
 stop_java_jars
 move_and_start_new_jar
+exit 0
