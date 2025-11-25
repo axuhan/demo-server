@@ -85,7 +85,7 @@
         </Logger>
 
         <!-- Spring 框架日志 -->
-        <Logger name="org.springframework" level="DEBUG" additivity="false">
+        <Logger name="org.springframework" level="INFO" additivity="false">
             <AppenderRef ref="SPRING-DEFAULT"/>
         </Logger>
 
