@@ -45,9 +45,9 @@ pipeline {
                                                 description: '选择操作'
                                         ),
                                         string(
-                                                name: 'VERSION',
-                                                defaultValue: 'latest',
-                                                description: '部署版本'
+                                                name: 'REMARK',
+                                                defaultValue: '',
+                                                description: '备注'
                                         )
                                 ],
                                 submitter: 'admin,web-team'

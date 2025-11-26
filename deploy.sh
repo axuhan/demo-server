@@ -42,7 +42,7 @@ move_and_start_new_jar() {
     mkdir -p /opt/app
     mv ./deployments/bootstrap-0.0.1-SNAPSHOT.jar /opt/app/bootstrap-0.0.1-SNAPSHOT.jar
     cd /opt/app
-    nohup java -jar bootstrap-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --server.port=8082 > output.log 2>&1 &
+    nohup java -jar bootstrap-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --server.port=8082 &
 }
 
 # 执行函数
