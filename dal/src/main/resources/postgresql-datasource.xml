@@ -16,8 +16,8 @@
     <bean id="postgresqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="${postgresql.url}"/>
-        <property name="username" value="prod_user"/>
-        <property name="password" value="prod_user"/>
+        <property name="username" value="${postgresql.username}"/>
+        <property name="password" value="${postgresql.password}"/>
     </bean>
 
     <bean id="postgresqlDataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

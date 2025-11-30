@@ -17,7 +17,15 @@
     <dependencies>
         <dependency>
             <groupId>com.xh</groupId>
+            <artifactId>common-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xh</groupId>
             <artifactId>dal</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xh</groupId>
+            <artifactId>login</artifactId>
         </dependency>
 
         <dependency>

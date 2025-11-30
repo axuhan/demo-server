@@ -14,11 +14,19 @@ public class Page<T> {
 
     private Integer pageSize;
 
-    public static <T> Page<T> of(PageRequest request, List<T> list) {
+    private Integer totalPage;
+
+    private Long total;
+
+    public static <T> Page<T> of(PageRequest request, List<T> list, long total) {
+        int totalPage = total == 0 ? 1 : ((int)total - 1) / request.getPageSize() + 1;
+
         Page<T> page = new Page<>();
-        page.setPageNo(request.getPageNo());
+        page.setPageNo(Math.min(request.getPageNo(), totalPage));
         page.setPageSize(request.getPageSize());
         page.setList(list);
+        page.setTotalPage(totalPage);
+        page.setTotal(total);
 
         return page;
     }

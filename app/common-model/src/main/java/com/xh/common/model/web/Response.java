@@ -1,4 +1,4 @@
-package com.xh.blog.controller.model.response;
+package com.xh.common.model.web;
 
 import lombok.Data;
 
@@ -6,6 +6,8 @@ import lombok.Data;
 public class Response<T> {
 
     private Boolean success;
+
+    private String message;
 
     private T data;
 
@@ -19,6 +21,13 @@ public class Response<T> {
     public static <T> Response<T> ofFail() {
         Response<T> response = new Response<>();
         response.setSuccess(false);
+        return response;
+    }
+
+    public static <T> Response<T> ofFail(String message) {
+        Response<T> response = new Response<>();
+        response.setSuccess(false);
+        response.setMessage(message);
         return response;
     }
 }

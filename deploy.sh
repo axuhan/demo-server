@@ -2,18 +2,18 @@
 
 # 查找并停止java -jar进程的脚本
 stop_java_jars() {
-    echo "正在查找java -jar进程..."
+    echo "正在查找app进程..."
 
     # 查找进程
-    pids=$(ps -ef | grep 'java -jar' | grep -v grep | awk '{print $2}')
+    pids=$(ps -ef | grep 'java -jar bootstrap' | grep -v grep | awk '{print $2}')
 
     if [ -z "$pids" ]; then
-        echo "未找到运行的java -jar进程"
+        echo "未找到运行的app进程"
         return 0
     fi
 
-    echo "找到以下Java进程:"
-    ps -ef | grep 'java -jar' | grep -v grep
+    echo "找到以下app进程:"
+    ps -ef | grep 'java -jar bootstrap' | grep -v grep
 
     # 发送终止信号
     echo "正在停止进程..."
@@ -26,7 +26,7 @@ stop_java_jars() {
     sleep 10
 
     # 检查是否还有进程运行，如果有则强制杀死
-    remaining_pids=$(ps -ef | grep 'java -jar' | grep -v grep | awk '{print $2}')
+    remaining_pids=$(ps -ef | grep 'java -jar bootstrap' | grep -v grep | awk '{print $2}')
     if [ -n "$remaining_pids" ]; then
         echo "有些进程未正常退出，强制杀死..."
         for pid in $remaining_pids; do
@@ -35,7 +35,7 @@ stop_java_jars() {
         done
     fi
 
-    echo "所有java -jar进程已停止"
+    echo "所有app进程已停止"
 }
 
 move_and_start_new_jar() {

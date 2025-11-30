@@ -22,6 +22,9 @@
         <module>dal</module>
         <module>app/blog</module>
         <module>bootstrap</module>
+        <module>app/login</module>
+        <module>app/common-model</module>
+        <module>app/common-utils</module>
     </modules>
 
     <dependencyManagement>
@@ -39,6 +42,21 @@
             <dependency>
                 <groupId>com.xh</groupId>
                 <artifactId>dal</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xh</groupId>
+                <artifactId>login</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xh</groupId>
+                <artifactId>common-model</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xh</groupId>
+                <artifactId>common-utils</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
 
@@ -73,6 +91,25 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.7.8</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.20.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>4.4.0</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
