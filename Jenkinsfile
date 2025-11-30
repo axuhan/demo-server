@@ -34,33 +34,7 @@ pipeline {
                     def batchNo = 0;
                     for(batch in serverBatches) {
                         batchNo++;
-                        def deployWeb = input(
-                                id: UUID.randomUUID().toString(),
-                                message: "开始部署到 批次 ${batchNo}？",
-                                ok: '开始部署',
-                                parameters: [
-                                        choice(
-                                                name: 'ACTION',
-                                                choices: ['deploy', 'skip', 'abort'],
-                                                description: '选择操作'
-                                        ),
-                                        string(
-                                                name: 'REMARK',
-                                                defaultValue: '',
-                                                description: '备注'
-                                        )
-                                ],
-                                submitter: 'admin,web-team'
-                        )
-                        if (deployWeb.ACTION == 'deploy') {
-                            echo "开始部署 批次 ${batchNo}"
-                            // 实际部署逻辑
-                            deployBatchServers_v2(batch)
-                        } else if (deployWeb.ACTION == 'skip') {
-                            echo "跳过 批次 ${batchNo} 部署"
-                        } else {
-                            error "用户中止了 批次 ${batchNo} 的部署"
-                        }
+                        deployBatch(batch, batchNo);
                     }
                 }
             }
@@ -74,7 +48,41 @@ def static getServerBatches() {
     ]
 }
 
-def deployBatchServers_v2(servers) {
+def deployBatchSkipConfirm(batch, batchNo) {
+    echo "开始部署 批次 ${batchNo}"
+    deployBatchServers(batch)
+}
+
+def deployBatch(batch, batchNo) {
+    def deployWeb = input(
+            id: UUID.randomUUID().toString(),
+            message: "开始部署到 批次 ${batchNo}？",
+            ok: '开始部署',
+            parameters: [
+                    choice(
+                            name: 'ACTION',
+                            choices: ['deploy', 'skip', 'abort'],
+                            description: '选择操作'
+                    ),
+                    string(
+                            name: 'REMARK',
+                            defaultValue: '',
+                            description: '备注'
+                    )
+            ],
+            submitter: 'admin,web-team'
+    )
+    if (deployWeb.ACTION == 'deploy') {
+        echo "开始部署 批次 ${batchNo}"
+        deployBatchServers(batch)
+    } else if (deployWeb.ACTION == 'skip') {
+        echo "跳过 批次 ${batchNo} 部署"
+    } else {
+        error "用户中止了 批次 ${batchNo} 的部署"
+    }
+}
+
+def deployBatchServers(servers) {
     for(server in servers) {
         sh """
             scp -i /var/jenkins_home/ssh_key/id_rsa -o StrictHostKeyChecking=no deploy.sh health_check.sh bootstrap/target/bootstrap-0.0.1-SNAPSHOT.jar root@${server}:/root/deployments

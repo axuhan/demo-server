@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(path = "login")
+@RequestMapping(path = "/api/login")
 public class UserLoginController {
 
     @Autowired

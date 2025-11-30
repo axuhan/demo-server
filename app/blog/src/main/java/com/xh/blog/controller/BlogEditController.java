@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(path = "blog/edit")
+@RequestMapping(path = "/api/blog/edit")
 public class BlogEditController {
 
     @Resource

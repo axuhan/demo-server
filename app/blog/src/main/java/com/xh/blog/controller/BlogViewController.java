@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "blog/view")
+@RequestMapping(path = "/api/blog/view")
 public class BlogViewController {
 
     @Autowired

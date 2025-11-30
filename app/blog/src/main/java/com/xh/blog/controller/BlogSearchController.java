@@ -22,7 +22,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "blog/search")
+@RequestMapping(path = "/api/blog/search")
 public class BlogSearchController {
 
     @Resource

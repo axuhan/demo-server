@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "waiting healthcheck..."
-sleep 60
+sleep 30
 
 for times in {1..10}
 do

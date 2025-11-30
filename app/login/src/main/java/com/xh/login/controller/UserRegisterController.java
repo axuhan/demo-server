@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = "user")
+@RequestMapping(path = "/api/user")
 public class UserRegisterController {
 
     @Autowired
